@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>我的畢業歌｜ChatGPT 歌詞生成模板</title>
+  <style>
+    :root{
+      --bg:#f6f8ff;
+      --card:#ffffff;
+      --text:#263238;
+      --muted:#607d8b;
+      --primary:#5b6df8;
+      --primary2:#7d5cff;
+      --accent:#ffb74d;
+      --green:#43a047;
+      --red:#e53935;
+      --border:#e4e7f2;
+      --shadow:0 10px 30px rgba(69,82,145,.12);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:"Noto Sans TC","Microsoft JhengHei",Arial,sans-serif;
+      background:linear-gradient(135deg,#f7f9ff,#eef3ff);
+      color:var(--text);
+      line-height:1.6;
+    }
+    .wrap{max-width:1100px;margin:auto;padding:24px}
+    .hero{
+      background:linear-gradient(135deg,var(--primary),var(--primary2));
+      color:white;
+      border-radius:24px;
+      padding:28px;
+      box-shadow:var(--shadow);
+      margin-bottom:22px;
+    }
+    .hero h1{margin:0 0 8px;font-size:clamp(1.8rem,4vw,3rem)}
+    .hero p{margin:0;opacity:.95}
+    .flow{
+      display:grid;
+      grid-template-columns:repeat(6,1fr);
+      gap:8px;
+      margin-top:20px;
+    }
+    .flow div{
+      background:rgba(255,255,255,.16);
+      border:1px solid rgba(255,255,255,.28);
+      border-radius:14px;
+      padding:10px 6px;
+      text-align:center;
+      font-weight:700;
+    }
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:20px;
+      box-shadow:var(--shadow);
+      padding:22px;
+      margin:18px 0;
+    }
+    h2{margin:0 0 12px;color:#3344aa}
+    .hint{
+      background:#fff8e1;
+      border-left:5px solid var(--accent);
+      padding:12px 14px;
+      border-radius:10px;
+      margin-bottom:18px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:16px;
+    }
+    label{display:block;font-weight:700;margin-bottom:6px}
+    small{color:var(--muted)}
+    input, textarea, select{
+      width:100%;
+      border:1.5px solid #cfd5e6;
+      border-radius:12px;
+      padding:12px 13px;
+      font-size:1rem;
+      font-family:inherit;
+      outline:none;
+      background:#fcfdff;
+    }
+    input:focus, textarea:focus, select:focus{
+      border-color:var(--primary);
+      box-shadow:0 0 0 3px rgba(91,109,248,.12);
+    }
+    textarea{min-height:92px;resize:vertical}
+    .full{grid-column:1/-1}
+    .buttons{
+      display:flex;gap:10px;flex-wrap:wrap;margin-top:18px
+    }
+    button{
+      border:0;
+      border-radius:12px;
+      padding:11px 16px;
+      font-size:1rem;
+      font-weight:700;
+      cursor:pointer;
+    }
+    .primary{background:var(--primary);color:white}
+    .secondary{background:#eef0ff;color:#3445bd}
+    .success{background:#e8f5e9;color:#2e7d32}
+    .danger{background:#ffebee;color:#c62828}
+    .output{
+      min-height:260px;
+      white-space:pre-wrap;
+      background:#111827;
+      color:#f9fafb;
+      border-radius:14px;
+      padding:16px;
+      overflow:auto;
+      font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;
+    }
+    .check-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      margin-top:12px;
+    }
+    .check{
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:14px;
+      background:#fbfcff;
+    }
+    .check strong{display:block;margin-bottom:5px}
+    .keep strong{color:var(--green)}
+    .edit strong{color:#ef6c00}
+    .delete strong{color:var(--red)}
+    .footer{
+      text-align:center;color:var(--muted);font-size:.92rem;padding:20px 0 40px
+    }
+    .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+    .chip{
+      border:1px solid #d9def0;background:#f5f7ff;color:#4553a4;
+      border-radius:999px;padding:6px 10px;font-size:.88rem;font-weight:600;
+      cursor:pointer;user-select:none
+    }
+    .chip:hover{background:#e8ebff}
+    .chip.selected{background:#5b6df8;color:white;border-color:#5b6df8}
+    @media (max-width:760px){
+      .grid,.check-grid{grid-template-columns:1fr}
+      .flow{grid-template-columns:repeat(3,1fr)}
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <section class="hero">
+    <h1>🎓 我的畢業歌</h1>
+    <p>ChatGPT 歌詞生成 × Suno 音樂創作｜學生只要輸入關鍵詞，就能一起完成屬於班級的歌曲。</p>
+    <div class="flow">
+      <div>💬 說</div>
+      <div>📥 收</div>
+      <div>✨ 生</div>
+      <div>🔍 挑</div>
+      <div>🛠️ 改</div>
+      <div>🎵 唱</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>① 蒐集我們的畢業回憶</h2>
+    <div class="hint">
+      不用寫完整句子！可以直接點選下方的關鍵詞，也可以自己輸入。建議每一類選 2～5 個最符合你們班的內容。
+    </div>
+
+    <div class="grid">
+      <div>
+        <label>🏫 學校名稱</label>
+        <input id="school" placeholder="例如：竹仁國小">
+      </div>
+      <div>
+        <label>👥 班級／年級</label>
+        <input id="className" placeholder="例如：六年一班">
+      </div>
+
+      <div>
+        <label>🌳 校園地點</label>
+        <textarea id="places" placeholder="操場、教室、走廊、圖書館……"></textarea>
+        <div class="chips"><span class="chip" onclick="toggleChip(this, 'places')">操場</span><span class="chip" onclick="toggleChip(this, 'places')">教室</span><span class="chip" onclick="toggleChip(this, 'places')">走廊</span><span class="chip" onclick="toggleChip(this, 'places')">圖書館</span><span class="chip" onclick="toggleChip(this, 'places')">電腦教室</span><span class="chip" onclick="toggleChip(this, 'places')">遊戲場</span><span class="chip" onclick="toggleChip(this, 'places')">籃球場</span><span class="chip" onclick="toggleChip(this, 'places')">司令台</span><span class="chip" onclick="toggleChip(this, 'places')">校門口</span><span class="chip" onclick="toggleChip(this, 'places')">合作社</span></div>
+      </div>
+      <div>
+        <label>😆 難忘事情</label>
+        <textarea id="events" placeholder="大隊接力、畢業旅行、午休聊天……"></textarea>
+        <div class="chips"><span class="chip" onclick="toggleChip(this, 'events')">大隊接力</span><span class="chip" onclick="toggleChip(this, 'events')">運動會</span><span class="chip" onclick="toggleChip(this, 'events')">畢業旅行</span><span class="chip" onclick="toggleChip(this, 'events')">校外教學</span><span class="chip" onclick="toggleChip(this, 'events')">午休聊天</span><span class="chip" onclick="toggleChip(this, 'events')">下課玩耍</span><span class="chip" onclick="toggleChip(this, 'events')">一起考試</span><span class="chip" onclick="toggleChip(this, 'events')">班級比賽</span><span class="chip" onclick="toggleChip(this, 'events')">表演活動</span><span class="chip" onclick="toggleChip(this, 'events')">打掃時間</span></div>
+      </div>
+
+      <div>
+        <label>👫 同學回憶</label>
+        <textarea id="friends" placeholder="一起笑、吵架又和好、合作完成任務……"></textarea>
+        <div class="chips"><span class="chip" onclick="toggleChip(this, 'friends')">一起大笑</span><span class="chip" onclick="toggleChip(this, 'friends')">互相幫忙</span><span class="chip" onclick="toggleChip(this, 'friends')">一起努力</span><span class="chip" onclick="toggleChip(this, 'friends')">吵架又和好</span><span class="chip" onclick="toggleChip(this, 'friends')">分享秘密</span><span class="chip" onclick="toggleChip(this, 'friends')">一起玩遊戲</span><span class="chip" onclick="toggleChip(this, 'friends')">互相鼓勵</span><span class="chip" onclick="toggleChip(this, 'friends')">分組合作</span><span class="chip" onclick="toggleChip(this, 'friends')">一起被提醒</span><span class="chip" onclick="toggleChip(this, 'friends')">陪伴彼此</span></div>
+      </div>
+      <div>
+        <label>👨‍🏫 老師回憶</label>
+        <textarea id="teachers" placeholder="老師常說的話、最難忘的提醒……"></textarea>
+        <div class="chips"><span class="chip" onclick="toggleChip(this, 'teachers')">老師的鼓勵</span><span class="chip" onclick="toggleChip(this, 'teachers')">老師的提醒</span><span class="chip" onclick="toggleChip(this, 'teachers')">老師的笑容</span><span class="chip" onclick="toggleChip(this, 'teachers')">一起上課</span><span class="chip" onclick="toggleChip(this, 'teachers')">被老師稱讚</span><span class="chip" onclick="toggleChip(this, 'teachers')">老師陪我們練習</span><span class="chip" onclick="toggleChip(this, 'teachers')">老師說加油</span><span class="chip" onclick="toggleChip(this, 'teachers')">老師教我們做人</span><span class="chip" onclick="toggleChip(this, 'teachers')">老師的叮嚀</span><span class="chip" onclick="toggleChip(this, 'teachers')">老師陪伴我們</span></div>
+      </div>
+
+      <div>
+        <label>🥹 畢業心情</label>
+        <textarea id="feelings" placeholder="捨不得、期待、開心、緊張……"></textarea>
+        <div class="chips"><span class="chip" onclick="toggleChip(this, 'feelings')">捨不得</span><span class="chip" onclick="toggleChip(this, 'feelings')">開心</span><span class="chip" onclick="toggleChip(this, 'feelings')">期待</span><span class="chip" onclick="toggleChip(this, 'feelings')">感動</span><span class="chip" onclick="toggleChip(this, 'feelings')">緊張</span><span class="chip" onclick="toggleChip(this, 'feelings')">不捨</span><span class="chip" onclick="toggleChip(this, 'feelings')">感謝</span><span class="chip" onclick="toggleChip(this, 'feelings')">興奮</span><span class="chip" onclick="toggleChip(this, 'feelings')">有點難過</span><span class="chip" onclick="toggleChip(this, 'feelings')">充滿希望</span></div>
+      </div>
+      <div>
+        <label>🚀 想對大家說</label>
+        <textarea id="message" placeholder="不要忘記彼此、未來加油、以後再見……"></textarea>
+        <div class="chips"><span class="chip" onclick="toggleChip(this, 'message')">不要忘記彼此</span><span class="chip" onclick="toggleChip(this, 'message')">未來加油</span><span class="chip" onclick="toggleChip(this, 'message')">有空再見</span><span class="chip" onclick="toggleChip(this, 'message')">勇敢追夢</span><span class="chip" onclick="toggleChip(this, 'message')">保持聯絡</span><span class="chip" onclick="toggleChip(this, 'message')">謝謝你的陪伴</span><span class="chip" onclick="toggleChip(this, 'message')">祝大家順利</span><span class="chip" onclick="toggleChip(this, 'message')">記得我們的回憶</span><span class="chip" onclick="toggleChip(this, 'message')">一起向未來前進</span><span class="chip" onclick="toggleChip(this, 'message')">我們永遠是朋友</span></div>
+      </div>
+
+      <div>
+        <label>🎶 歌曲感覺</label>
+        <select id="mood">
+          <option>溫暖感動、青春、有希望</option>
+          <option>輕快活潑、校園感</option>
+          <option>青春搖滾、熱血</option>
+          <option>抒情溫柔、感動</option>
+          <option>電影感、慢慢堆疊到高潮</option>
+        </select>
+      </div>
+      <div>
+        <label>🎤 演唱方式</label>
+        <select id="sing">
+          <option>適合全班合唱</option>
+          <option>男女輪唱＋副歌合唱</option>
+          <option>主唱＋全班副歌</option>
+          <option>多人分段演唱</option>
+        </select>
+      </div>
+
+      <div class="full">
+        <label>🧩 歌曲結構</label>
+        <small>選一種適合你們畢業歌的編排方式。</small>
+        <select id="structure" style="margin-top:8px">
+          <option value="classic">🎤 1. 經典流行型｜Intro → Verse → Pre-Chorus → Chorus → Verse → Pre-Chorus → Chorus → Bridge → Final Chorus → Outro</option>
+          <option value="simple">🌟 2. 簡單好唱型｜Intro → Verse → Chorus → Verse → Chorus → Final Chorus → Outro</option>
+          <option value="fast">🚀 3. 快速進副歌型｜Intro → Verse → Chorus → Verse → Chorus → Bridge → Final Chorus</option>
+          <option value="ballad">💖 4. 抒情漸進型｜Intro → Verse → Verse → Chorus → Verse → Chorus → Bridge → Final Chorus → Outro</option>
+          <option value="chorusfirst">🔥 5. 副歌先行型｜Intro → Chorus → Verse → Pre-Chorus → Chorus → Verse → Chorus → Final Chorus</option>
+          <option value="graduation">🎓 6. 畢業歌型｜Intro → Verse → Pre-Chorus → Chorus → Verse → Chorus → Bridge → Final Chorus → Outro</option>
+        </select>
+        <div id="structureDesc" class="hint" style="margin-top:10px;margin-bottom:0">
+          ⭐ 最標準，有完整起承轉合。
+        </div>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button class="primary" onclick="generatePrompt()">✨ 產生 ChatGPT 指令</button>
+      <button class="secondary" onclick="fillExample()">🧪 填入示範資料</button>
+      <button class="danger" onclick="clearAll()">🗑️ 清除</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>② 複製這段文字到 ChatGPT</h2>
+    <div class="hint">按下「產生 ChatGPT 指令」後，下面會自動整理成完整的歌詞生成提示詞。</div>
+    <div id="output" class="output">請先完成上方資料，再按「產生 ChatGPT 指令」。</div>
+    <div class="buttons">
+      <button class="success" onclick="copyPrompt()">📋 複製提示詞</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>③ ChatGPT 寫完後，全班一起當編輯</h2>
+    <p>不要直接把第一版貼進 Suno。每一段歌詞都先問：「這真的像我們嗎？」</p>
+    <div class="check-grid">
+      <div class="check keep">
+        <strong>⭕ 保留</strong>
+        這句很像我們、有真實回憶、大家喜歡。
+      </div>
+      <div class="check edit">
+        <strong>△ 修改</strong>
+        意思可以，但太成熟、太文青，或不像學生會說的話。
+      </div>
+      <div class="check delete">
+        <strong>✕ 刪除</strong>
+        根本沒有發生過，或跟我們班沒有關係。
+      </div>
+    </div>
+
+    <div style="margin-top:18px">
+      <label>🛠️ 我們希望 ChatGPT 修改什麼？</label>
+      <textarea id="revision" placeholder="例如：刪除「乘著青春翅膀」這種太成熟的句子；加入畢旅晚上大家一直聊天、捨不得睡覺的回憶。"></textarea>
+    </div>
+
+    <div class="buttons">
+      <button class="primary" onclick="generateRevision()">🔁 產生修改指令</button>
+      <button class="success" onclick="copyRevision()">📋 複製修改指令</button>
+    </div>
+
+    <div id="revisionOutput" class="output" style="margin-top:14px;min-height:150px">修改意見會顯示在這裡。</div>
+  </section>
+
+  <section class="card">
+    <h2>④ 歌詞完成後 → Suno</h2>
+    <p>將全班確認過的歌詞貼入 Suno，再嘗試不同音樂風格。建議同一份歌詞生成 2～4 種版本，再讓學生比較哪一個最符合班級的感覺。</p>
+    <div class="hint">
+      可以比較：青春流行／溫暖抒情／校園搖滾／電影感。重點不是「哪首最好聽」，而是「哪首最像我們」。
+    </div>
+  </section>
+
+  <div class="footer">🎓 AI 畢業歌創作學習模板｜ChatGPT × Suno</div>
+</div>
+
+<script>
+function val(id){
+  return document.getElementById(id).value.trim() || "尚未提供";
+}
+
+function toggleChip(el, targetId){
+  const input=document.getElementById(targetId);
+  const word=el.textContent.trim();
+  let items=input.value.split(/[、,，]/).map(x=>x.trim()).filter(Boolean);
+  if(el.classList.contains("selected")){
+    items=items.filter(x=>x!==word);
+    el.classList.remove("selected");
+  }else{
+    if(!items.includes(word)) items.push(word);
+    el.classList.add("selected");
+  }
+  input.value=items.join("、");
+}
+
+const structureData = {
+  classic:{
+    desc:"⭐ 最標準，有完整起承轉合。",
+    prompt:"[Intro] → [Verse 1] → [Pre-Chorus] → [Chorus] → [Verse 2] → [Pre-Chorus] → [Chorus] → [Bridge] → [Final Chorus] → [Outro]"
+  },
+  simple:{
+    desc:"🌟 沒有預副歌、橋段，簡單好記。",
+    prompt:"[Intro] → [Verse 1] → [Chorus] → [Verse 2] → [Chorus] → [Final Chorus] → [Outro]"
+  },
+  fast:{
+    desc:"🚀 很快進入重點，適合活潑歌曲。",
+    prompt:"[Intro] → [Verse 1] → [Chorus] → [Verse 2] → [Chorus] → [Bridge] → [Final Chorus]"
+  },
+  ballad:{
+    desc:"💖 前面慢慢說故事，後面情緒爆發。",
+    prompt:"[Intro] → [Verse 1] → [Verse 2] → [Chorus] → [Verse 3] → [Chorus] → [Bridge] → [Final Chorus] → [Outro]"
+  },
+  chorusfirst:{
+    desc:"🔥 一開始就出現記憶點，適合抓耳歌曲。",
+    prompt:"[Intro] → [Chorus] → [Verse 1] → [Pre-Chorus] → [Chorus] → [Verse 2] → [Chorus] → [Final Chorus]"
+  },
+  graduation:{
+    desc:"🎓 校園回憶 → 離別 → 友情 → 未來，特別適合畢業歌曲。",
+    prompt:"[Intro] → [Verse 1] → [Pre-Chorus] → [Chorus] → [Verse 2] → [Chorus] → [Bridge] → [Final Chorus] → [Outro]"
+  }
+};
+
+function getStructurePrompt(){
+  const key=document.getElementById("structure").value;
+  return structureData[key].prompt;
+}
+
+function updateStructureDesc(){
+  const key=document.getElementById("structure").value;
+  document.getElementById("structureDesc").textContent=structureData[key].desc;
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+  document.getElementById("structure").addEventListener("change",updateStructureDesc);
+  updateStructureDesc();
+});
+
+function generatePrompt(){
+  const prompt = `我們是【${val("school")}】【${val("className")}】的學生，準備畢業了。
+
+請根據我們提供的真實校園回憶，幫我們創作一首屬於全班的畢業歌。
+
+【我們的素材】
+🏫 校園地點：${val("places")}
+😆 難忘事情：${val("events")}
+👫 同學回憶：${val("friends")}
+👨‍🏫 老師回憶：${val("teachers")}
+🥹 畢業心情：${val("feelings")}
+🚀 想對大家說：${val("message")}
+
+【歌曲方向】
+歌曲感覺：${val("mood")}
+演唱方式：${val("sing")}
+
+【歌詞要求】
+1. 使用繁體中文。
+2. 適合國小六年級學生演唱。
+3. 多使用我們提供的真實回憶，不要自行捏造太多不存在的事件。
+4. 用學生真的可能會說的自然語氣，不要太成熟、太文青。
+5. 每句不要太長，要容易演唱、容易記。
+6. 適度押韻，但不要為了押韻而犧牲自然度。
+7. 副歌要有一句簡單、有記憶點、適合全班一起唱的核心句。
+8. 歌曲結構使用：${getStructurePrompt()}
+9. 歌曲長度以約 3～4 分鐘為目標。
+10. 完成歌詞後，再提供 3 個歌名讓我們全班投票。
+11. 不要模仿任何特定歌手或現有歌曲的歌詞。
+
+請先輸出完整歌詞，再列出三個歌名。`;
+
+  document.getElementById("output").textContent = prompt;
+}
+
+function generateRevision(){
+  const revision = val("revision");
+  const text = `請修改剛才生成的畢業歌。
+
+這是我們全班討論後的修改意見：
+${revision}
+
+修改時請遵守：
+1. 保留原本好的歌曲結構。
+2. 優先使用我們真實發生過的回憶。
+3. 語氣要像國小六年級學生，不要太成熟或太文青。
+4. 每句簡短、自然、容易唱。
+5. 副歌仍要有明確且容易記住的核心句。
+6. 如果新增內容，請不要捏造我們沒有提供的具體事件。
+7. 修改完成後，請直接輸出「新版完整歌詞」。`;
+
+  document.getElementById("revisionOutput").textContent = text;
+}
+
+async function copyText(text, buttonText){
+  try{
+    await navigator.clipboard.writeText(text);
+    alert(buttonText);
+  }catch(e){
+    alert("瀏覽器無法自動複製，請手動選取文字複製。");
+  }
+}
+
+function copyPrompt(){
+  copyText(document.getElementById("output").textContent,"提示詞已複製！");
+}
+function copyRevision(){
+  copyText(document.getElementById("revisionOutput").textContent,"修改指令已複製！");
+}
+
+function fillExample(){
+  document.getElementById("school").value="竹仁國小";
+  document.getElementById("className").value="六年級";
+  document.getElementById("places").value="操場、教室、走廊";
+  document.getElementById("events").value="大隊接力、畢業旅行、午休聊天";
+  document.getElementById("friends").value="一起笑、互相幫忙、吵架後又和好";
+  document.getElementById("teachers").value="老師常提醒我們做好自己的事情";
+  document.getElementById("feelings").value="捨不得、期待、開心";
+  document.getElementById("message").value="不要忘記彼此、未來加油、以後還要再見";
+  generatePrompt();
+}
+
+function clearAll(){
+  ["school","className","places","events","friends","teachers","feelings","message","revision"].forEach(id=>{
+    document.getElementById(id).value="";
+  });
+  document.getElementById("output").textContent="請先完成上方資料，再按「產生 ChatGPT 指令」。";
+  document.getElementById("revisionOutput").textContent="修改意見會顯示在這裡。";
+}
+</script>
+</body>
+</html>
